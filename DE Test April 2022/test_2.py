@@ -69,6 +69,42 @@
 # - the dx_number (if available) of the nearest court of the right type
 # - the distance to the nearest court of the right type
 
-if __name__ == "__main__":
-    # [TODO]: write your answer here
+import csv
+import requests as req
+
+COURT_API_URL = "https://courttribunalfinder.service.gov.uk/search/results.json?postcode="
+
+def get_court_data(postcode: str) -> list:
+    """Function to get court data from the API for a given postcode."""
+
+    if not isinstance(postcode, str):
+        raise TypeError("Error: Please input a valid postcode.")
+
+    if len(postcode) < 6:
+        raise ValueError("Error: Postcode not long enough. Please check postcode is correct.")
+
+    response = req.get(f"{COURT_API_URL}{postcode}")
+
+    json = response.json()
+
+    return json
+
+def extract_relevant_data(court_data: list) -> dict:
+    """Function to extract name, dx_number"""
     pass
+
+def read_csv():
+    """Function to read data from people.csv"""
+
+    with open("people.csv", "r") as people_csv:
+        contents = csv.DictReader(people_csv)
+        return contents
+
+
+
+if __name__ == "__main__":
+    read_csv()
+
+
+
+
