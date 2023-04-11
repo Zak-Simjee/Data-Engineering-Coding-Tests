@@ -89,18 +89,6 @@ def get_court_data(postcode: str) -> list:
 
     return json
 
-def extract_relevant_data(court_data: dict) -> dict:
-    """Function to extract name, dx_number and distance"""
-
-    relevant_data = {}
-
-    desired_data = ["name", "dx_number", "distance"]
-
-    for i in desired_data:
-        relevant_data.update(court_data[i])
-
-    return relevant_data
-    
 
 def read_csv() -> list:
     """Function to read data from people.csv"""
@@ -126,9 +114,8 @@ if __name__ == "__main__":
         for court in possible_courts:
             if person["looking_for_court_type"] in court["types"]:
                 matching_courts.append(court)
-        
-        matching_courts.sort(key=lambda x: x["distance"])
 
+        matching_courts.sort(key=lambda x: x["distance"])
 
 
 
