@@ -71,6 +71,7 @@
 
 import csv
 import requests as req
+import os
 
 COURT_API_URL = "https://courttribunalfinder.service.gov.uk/search/results.json?postcode="
 
@@ -103,9 +104,29 @@ def read_csv() -> list:
 
     return people_list
 
+def create_nearest_courts_csv() -> None:
+    """Create an output csv file with initial line if none exists."""
+
+    if "nearest_courts.csv" not in os.listdir("."):
+        with open("nearest_courts.csv", "w") as court_csv:
+            court_csv.wite("name,desired_court_type,home_postcode,nearest_court,dx_number,distance")
+
+def write_to_nearest_courts_csv(person: dict, court: dict) -> None:
+    """Function to """
+    with open("nearest_courts.csv", "a") as court_csv:
+        name = person["person_name"]
+        desired_court_type = person["looking_for_court_type"]
+        home_postcode = person["home_postcode"]
+        nearest_court = court["name"]
+        dx_number = court["dx_number"]
+        distance = court["distance"]
+        court_csv.wite(f"{name},{desired_court_type},{home_postcode},{nearest_court},{dx_number},{distance}")
+
+
 
 
 if __name__ == "__main__":
+    create_nearest_courts_csv()
     people = read_csv()
 
     for person in people:
@@ -116,6 +137,10 @@ if __name__ == "__main__":
                 matching_courts.append(court)
 
         matching_courts.sort(key=lambda x: x["distance"])
+
+        write_to_nearest_courts_csv(person, matching_courts[0])
+
+
 
 
 
