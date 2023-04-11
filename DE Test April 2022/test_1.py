@@ -5,11 +5,13 @@
 # There's no perfect way to do this: just decide what you think is reasonable to get
 # the test to pass. The only thing you are not allowed to do is filter out log lines
 # based on the exact row numbers you want to remove.
-def is_log_line(line):
+def is_log_line(line:str) -> bool:
     """Takes a log line and returns True if it is a valid log line and returns nothing
     if it is not.
     """
-    return True
+    split_line = line.split()
+    if len(split_line) >= 4:
+        return True
 
 
 # [TODO]: step 2
@@ -17,11 +19,17 @@ def is_log_line(line):
 # dictionary with keys for "timestamp", "log_level", and "message". The valid log
 # levels are `INFO`, `TRACE`, and `WARNING`. See lines 67 to 71 for how we expect the
 # results to look.
-def get_dict(line):
+def get_dict(line: str) -> bool:
     """Takes a log line and returns a dict with
     `timestamp`, `log_level`, `message` keys
     """
-    pass
+    split_line = line.split()
+    timestamp = " ".join(split_line[0:2])
+    log_level = split_line[2]
+    message = " ".join(split_line[3:])
+    log_dict = {"timestamp": timestamp, "log_level": log_level, "message": message}
+
+    return log_dict
 
 
 # YOU DON'T NEED TO CHANGE ANYTHING BELOW THIS LINE
