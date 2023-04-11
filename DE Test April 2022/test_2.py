@@ -107,10 +107,8 @@ def read_csv() -> list:
 
 def create_nearest_courts_csv() -> None:
     """Create an output csv file with initial line if none exists."""
-
-    if "nearest_courts.csv" not in os.listdir("."):
-        with open("nearest_courts.csv", "w") as court_csv:
-            court_csv.wite("name,desired_court_type,home_postcode,nearest_court,dx_number,distance")
+    with open("nearest_courts.csv", "w") as court_csv:
+        court_csv.write("name,desired_court_type,home_postcode,nearest_court,dx_number,distance\n")
 
 
 def write_to_nearest_courts_csv(person: dict, court: dict) -> None:
@@ -123,7 +121,7 @@ def write_to_nearest_courts_csv(person: dict, court: dict) -> None:
         nearest_court = court["name"]
         dx_number = court["dx_number"]
         distance = court["distance"]
-        court_csv.write(f"{name},{desired_court_type},{home_postcode},{nearest_court},{dx_number},{distance}")
+        court_csv.write(f"{name},{desired_court_type},{home_postcode},{nearest_court},{dx_number},{distance}\n")
 
 
 if __name__ == "__main__":
