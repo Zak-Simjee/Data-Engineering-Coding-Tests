@@ -90,7 +90,7 @@ def get_court_data(postcode: str) -> list:
     return json
 
 
-def read_csv() -> list:
+def read_people_csv() -> list:
     """Function to read data from people.csv"""
 
     people_list = []
@@ -125,7 +125,7 @@ def write_to_nearest_courts_csv(person: dict, court: dict) -> None:
 
 if __name__ == "__main__":
     create_nearest_courts_csv()
-    people = read_csv()
+    people = read_people_csv()
 
     for person in people:
         possible_courts = get_court_data(person["home_postcode"])
