@@ -71,7 +71,6 @@
 
 import csv
 import requests as req
-import os
 
 COURT_API_URL = "https://courttribunalfinder.service.gov.uk/search/results.json?postcode="
 
