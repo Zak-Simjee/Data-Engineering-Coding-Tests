@@ -41,3 +41,9 @@ You're free to approach this however you like. We'll ask you to describe your ap
 
 ### Test 3
 This asks you to fix a broken function and then write a unit test for it.
+
+## Testing
+
+test_script_2.py provides unit tests for test_2.py
+
+test_script_3.py provides unit tests for test_3.py

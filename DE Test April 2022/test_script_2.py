@@ -1,6 +1,6 @@
 import pytest
 
-from test_2 import get_court_data, create_nearest_courts_csv
+from test_2 import get_court_data
 
 def test_postcode_not_str_request():
     with pytest.raises(TypeError) as err:
